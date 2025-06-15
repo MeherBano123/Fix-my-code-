@@ -1,0 +1,254 @@
+/* CodeFixer.css - Final Fixed Version */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  --primary-color: #4a6bff;
+  --primary-hover: #3a56d4;
+  --text-dark: #2d3748;
+  --text-medium: #4a5568;
+  --text-light: #718096;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --error-color: #e53e3e;
+  --error-bg: #fff5f5;
+  --gradient-start: #4a6bff;
+  --gradient-end: #6a11cb;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, 
+              Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-logo a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-medium);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+.nav-button {
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.signup-button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Main Container */
+.code-fixer-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.code-fixer-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+}
+
+/* Gradient Header */
+.code-fixer-header {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.code-fixer-header h2 {
+  font-size: 2rem;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Error Message */
+.error-message {
+  background-color: var(--error-bg);
+  color: var(--error-color);
+  padding: 0.8rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  border-left: 3px solid var(--error-color);
+}
+
+/* Code Editor Grid */
+.code-fixer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  height: calc(100vh - 250px);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .code-fixer-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+/* Input/Output Sections */
+.code-input-section, 
+.code-output-section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-bottom: 1rem;
+  min-height: 150px; /* Ensures minimum space for inputs */
+}
+
+.input-group label {
+  font-weight: 500;
+  color: var(--text-medium);
+  margin-bottom: 0.5rem;
+}
+
+.code-textarea,
+.error-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  resize: vertical;
+  background-color: var(--card-bg);
+  transition: all 0.3s ease;
+  min-height: 200px; /* Fixed minimum height */
+}
+
+.code-textarea {
+  min-height: 300px; /* Larger area for code */
+}
+
+.error-textarea {
+  min-height: 100px; /* Smaller area for errors */
+}
+
+.code-textarea:focus,
+.error-textarea:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(74, 107, 255, 0.2);
+  border-color: var(--primary-color);
+}
+
+.corrected-code-display {
+  flex: 1;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--card-bg);
+  overflow: auto;
+  min-height: 300px; /* Match code textarea height */
+}
+
+.corrected-code-display pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-dark);
+}
+
+/* Fix Button */
+.action-button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  align-self: flex-start;
+}
+
+.action-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.action-button:disabled {
+  background-color: #cbd5e0;
+  cursor: not-allowed;
+}
+
+/* Loading State */
+.button-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
