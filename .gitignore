@@ -1,0 +1,14 @@
+# Dependency directories
+
+__pycache__/
+# Virtual environment
+venv/
+.env/
+ENV/
+env/
+*.pyc
+__pycache__/
+
+# Environment files
+.env
+
